@@ -4,6 +4,7 @@
 
 import Link from "next/link";
 import { resolve } from "styled-jsx/css";
+import { API_URL } from "../constants";
 
 // export default function Page() {
 //   const [isLoading, setIsLoading] = useState(false);
@@ -23,7 +24,6 @@ import { resolve } from "styled-jsx/css";
 // }
 
 // // 2. server side
-export const API_URL = "https://nomad-movies.nomadcoders.workers.dev/movies";
 
 async function getMovies() {
   // await new Promise((resolve) => setTimeout(resolve, 5000));
@@ -33,18 +33,18 @@ async function getMovies() {
 }
 
 // Next Js가 이 컴포넌트에서 await해야함
-// export default async function HomePage() {
-//   const movies = await getMovies();
-//   return (
-//     <div>
-//       {movies.map((movie) => (
-//         <li key={movie.id}>
-//           <Link href={`/movies/${movie.id}`}>{movie.title}</Link>
-//         </li>
-//       ))}
-//     </div>
-//   );
-// }
+export default async function PracticePage() {
+  const movies = await getMovies();
+  return (
+    <div>
+      {movies.map((movie) => (
+        <li key={movie.id}>
+          <Link href={`/movies/${movie.id}`}>{movie.title}</Link>
+        </li>
+      ))}
+    </div>
+  );
+}
 
 // 1. 처음에 Loading페이지를 렌더링해서 보여줌
 // 2. 기다리고 있던 Homepage의 HTML결과를 기다림
